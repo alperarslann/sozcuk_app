@@ -1,0 +1,1 @@
+## Bilgisayarlı dilbilim dersi için yapmış olduğum uygulama
