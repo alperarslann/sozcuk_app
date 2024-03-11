@@ -2,24 +2,58 @@ import re
 import tkinter as tk
 from tkinter import messagebox
 
+def surerlik(sozcuk): # Türkçedeki sürerlilik eki var mı yok mu
+    cikti = "Sürerlik eki yok."
+    #cikti = "Sürerlik eki yok."
+    arama = re.search("..yor*", sozcuk)
+    if arama:
+        cikti = "Sürerlik eki var."
+        #cikti = "Sürerlik eki var."
+    return (cikti)
+
+def surerlilikSayac(tümceDizisi):
+    sozcukListesi = tümceDizisi.split()
+    #print("Sözcük List:",sozcukListesi) #kontrol amaçlı
+    surerlikEkleri = []
+    for sozcuk in sozcukListesi:
+        sozcukDegis = sozcuk.replace(".", "")
+        if surerlik(sozcukDegis) == "Sürerlik eki var.":
+            if surerlik(sozcukDegis):
+                surerlikEkleri.append(sozcukDegis.replace("yor", "YOR"))
+    return surerlikEkleri
+
+
+
+            
+
 def calculate():
     tümce = entry.get()
     if not tümce :
         messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
+    elif tümce == "Metin giriniz!":
+        messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
         return
+   
 
     karakterSayisi = len(tümce)
     kSayisi = len(re.findall(r'\S', tümce))
     liste = re.findall(r'\w+', tümce)
+    surerlilikBul = surerlik(tümce)
+    surerlilikSay = surerlilikSayac(tümce)
     sozcukSayisi = len(liste)
     ortalamaKarakter = round(karakterSayisi/sozcukSayisi, 2)
 
+    if not surerlilikSay:
+        surerlilikSay = ("Sürerlilik görünüşüyle çekimlenmiş eylem bulunamadı.").upper()
+        
     result = f"Girdi: {tümce}\n" \
             f"Liste: {liste}\n" \
+            f"Sürerlilik Görünüşüyle Çekimlenmiş Eylem Var mı?: {surerlilikBul}\n" \
+            f"Sürerlilik Görünüşüyle Çekimlenmiş Eylem(ler): {surerlilikSay}\n" \
             f"Boşluk dahil Karakter Sayısı: {karakterSayisi}\n" \
-              f"Boşluksuz Karakter Sayısı: {kSayisi}\n" \
-              f"Sözcük Sayısı: {sozcukSayisi}\n" \
-              f"Sözcük Başına Ortalama Karakter Sayısı: {ortalamaKarakter}" 
+            f"Boşluksuz Karakter Sayısı: {kSayisi}\n" \
+            f"Sözcük Sayısı: {sozcukSayisi}\n" \
+            f"Sözcük Başına Ortalama Karakter Sayısı: {ortalamaKarakter}"
             
 
     messagebox.showinfo("Sonuç", result,)
