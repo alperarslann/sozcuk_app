@@ -3,11 +3,11 @@ import tkinter as tk
 from tkinter import messagebox
 
 def surerlik(sozcuk): # Türkçedeki sürerlilik eki var mı yok mu
-    cikti = "Sürerlik eki yok."
+    cikti = "Sürerlik eki yok." # False döndürüyor.
     #cikti = "Sürerlik eki yok."
     arama = re.search("..yor*", sozcuk)
     if arama:
-        cikti = "Sürerlik eki var."
+        cikti = "Sürerlik eki var." # True döndürüyor.
         #cikti = "Sürerlik eki var."
     return (cikti)
 
@@ -28,12 +28,17 @@ def surerlilikSayac(tümceDizisi):
 
 def calculate():
     tümce = entry.get()
-    if not tümce :
-        messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
-    elif tümce == "Metin giriniz!":
+    if not tümce:
         messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
         return
-   
+    
+    elif tümce.isdigit():
+        messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
+        return  
+
+    elif tümce == "Metin giriniz!":
+        messagebox.showerror(title="HATA!", message="Lütfen bir sözcük ya da tümce giriniz!", icon="warning")
+        return  
 
     karakterSayisi = len(tümce)
     kSayisi = len(re.findall(r'\S', tümce))
@@ -54,11 +59,10 @@ def calculate():
             f"Boşluksuz Karakter Sayısı: {kSayisi}\n" \
             f"Sözcük Sayısı: {sozcukSayisi}\n" \
             f"Sözcük Başına Ortalama Karakter Sayısı: {ortalamaKarakter}"
-            
 
-    messagebox.showinfo("Sonuç", result,)
-
-
+    messagebox.showinfo("Sonuç", result)
+   
+    
 
 
 app = tk.Tk()
