@@ -2,13 +2,13 @@ import re
 import tkinter as tk
 from tkinter import messagebox
 
-def surerlik(sozcuk): # Türkçedeki sürerlilik eki var mı yok mu
-    cikti = "Sürerlik eki yok." # False döndürüyor.
-    #cikti = "Sürerlik eki yok."
+def surerlik(sozcuk): # Türkçedeki sürerlik görünüşü var mı yok mu
+    cikti = "Sürerlik görünüşü yok." # False döndürüyor.
+    #cikti = "Sürerlik görünüşü yok."
     arama = re.search("..yor*", sozcuk)
     if arama:
-        cikti = "Sürerlik eki var." # True döndürüyor.
-        #cikti = "Sürerlik eki var."
+        cikti = "Sürerlik görünüşü var." # True döndürüyor. 
+        #cikti = "Sürerlik görünüşü var."
     return (cikti)
 
 def surerlilikSayac(tümceDizisi):
@@ -17,7 +17,7 @@ def surerlilikSayac(tümceDizisi):
     surerlikEkleri = []
     for sozcuk in sozcukListesi:
         sozcukDegis = sozcuk.replace(".", "")
-        if surerlik(sozcukDegis) == "Sürerlik eki var.":
+        if surerlik(sozcukDegis) == "Sürerlik görünüşü var.":
             if surerlik(sozcukDegis):
                 surerlikEkleri.append(sozcukDegis.replace("yor", "YOR"))
     return surerlikEkleri
