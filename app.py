@@ -49,12 +49,12 @@ def calculate():
     ortalamaKarakter = round(karakterSayisi/sozcukSayisi, 2)
 
     if not surerlilikSay:
-        surerlilikSay = ("Sürerlilik görünüşüyle çekimlenmiş eylem bulunamadı.").upper()
+        surerlilikSay = ("Sürerlik görünüşüyle çekimlenmiş eylem bulunamadı.").upper()
         
     result = f"Girdi: {tümce}\n" \
             f"Liste: {liste}\n" \
-            f"Sürerlilik Görünüşüyle Çekimlenmiş Eylem Var mı?: {surerlilikBul}\n" \
-            f"Sürerlilik Görünüşüyle Çekimlenmiş Eylem(ler): {surerlilikSay}\n" \
+            f"Sürerlik Görünüşüyle Çekimlenmiş Eylem Var mı?: {surerlilikBul}\n" \
+            f"Sürerlik Görünüşüyle Çekimlenmiş Eylem(ler): {surerlilikSay}\n" \
             f"Boşluk dahil Karakter Sayısı: {karakterSayisi}\n" \
             f"Boşluksuz Karakter Sayısı: {kSayisi}\n" \
             f"Sözcük Sayısı: {sozcukSayisi}\n" \
